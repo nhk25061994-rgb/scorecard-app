@@ -13,7 +13,7 @@ import ArchiveModal from '../modals/ArchiveModal';
 import { fonts } from '../theme';
 import { useTheme } from '../theme/ThemeContext';
 
-const APP_URL = 'https://scorecard-app-eta.vercel.app/';
+const APP_URL = 'https://scoreboard99.vercel.app/';
 const FEEDBACK_URL = 'https://github.com/nhk25061994-rgb/scorecard-app/issues';
 const APP_NAME = 'scoreboard99';
 const DEV_CREDIT = 'Developed by Hemanth@25061994';
