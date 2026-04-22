@@ -1,7 +1,6 @@
 // src/theme/index.js
-// Single source of truth for the Wisden Pocket aesthetic
 
-export const colors = {
+const sharedPaper = {
   accent: '#E63946',
   accentDeep: '#C1272D',
   ink: '#141210',
@@ -16,7 +15,10 @@ export const colors = {
   warning: '#D97706',
   overlayDark: 'rgba(20, 18, 16, 0.55)',
   accentTint: '#FFF5F2',
+};
 
+const darkPalette = {
+  ...sharedPaper,
   bg: '#0A1018',
   bgElev: '#111823',
   card: '#141B26',
@@ -43,10 +45,50 @@ export const colors = {
 
   blue: '#2563EB',
   lightBlue: '#22D3EE',
+
+  onScoreDark: '#0A1018',
+  scoreOutline: 'transparent',
 };
 
+const lightPalette = {
+  ...sharedPaper,
+  bg: '#F5F7FB',
+  bgElev: '#FFFFFF',
+  card: '#FFFFFF',
+  cardDeep: '#F1F3F8',
+  cardBorder: '#E3E7EE',
+  cardBorderSoft: '#EDEFF4',
+  textPrimary: '#0F172A',
+  textSecondary: '#334155',
+  textMuted: '#64748B',
+  textSubtle: '#94A3B8',
+
+  green: '#4D7C0F',
+  greenSoft: 'rgba(132, 204, 22, 0.12)',
+  greenBorder: 'rgba(77, 124, 15, 0.45)',
+
+  orange: '#C2410C',
+  orangeSoft: 'rgba(234, 88, 12, 0.08)',
+  orangeBorder: 'rgba(194, 65, 12, 0.45)',
+
+  red: '#B91C1C',
+  redSoft: 'rgba(220, 38, 38, 0.08)',
+  redBorder: 'rgba(185, 28, 28, 0.50)',
+  redSolid: '#DC2626',
+
+  blue: '#1D4ED8',
+  lightBlue: '#0891B2',
+
+  onScoreDark: '#FFFFFF',
+  scoreOutline: 'transparent',
+};
+
+export const getColors = (mode) => (mode === 'light' ? lightPalette : darkPalette);
+
+// Backwards-compat default (used by modals that import `colors`)
+export const colors = darkPalette;
+
 export const fonts = {
-  // Display — for score figures, masthead, titles
   displayRegular: 'Fraunces_400Regular',
   displayMedium: 'Fraunces_500Medium',
   displaySemibold: 'Fraunces_600SemiBold',
@@ -55,8 +97,6 @@ export const fonts = {
   displayItalic: 'Fraunces_400Regular_Italic',
   displayItalicMedium: 'Fraunces_500Medium_Italic',
   displayItalicBold: 'Fraunces_700Bold_Italic',
-
-  // Mono — for labels, metadata
   monoRegular: 'IBMPlexMono_400Regular',
   monoMedium: 'IBMPlexMono_500Medium',
   monoSemibold: 'IBMPlexMono_600SemiBold',
@@ -64,7 +104,7 @@ export const fonts = {
 };
 
 export const sizes = {
-  scoreMain: 120,        // big bold score
+  scoreMain: 120,
   scoreSlash: 104,
   overs: 34,
   masthead: 30,
@@ -75,28 +115,14 @@ export const sizes = {
   ballMark: 17,
   navNumeral: 24,
   extraFigure: 44,
-
   body: 14,
   bodySmall: 13,
-  label: 9,               // mono labels
+  label: 9,
   labelSmall: 8,
   caption: 10,
   input: 20,
   inputPlaceholder: 16,
 };
 
-export const spacing = {
-  xs: 4,
-  sm: 6,
-  md: 10,
-  lg: 14,
-  xl: 22,
-  xxl: 32,
-};
-
-export const radii = {
-  sm: 3,
-  md: 4,
-  lg: 6,
-  xl: 20,
-};
+export const spacing = { xs: 4, sm: 6, md: 10, lg: 14, xl: 22, xxl: 32 };
+export const radii = { sm: 3, md: 4, lg: 6, xl: 20 };

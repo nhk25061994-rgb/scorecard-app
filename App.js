@@ -1,5 +1,5 @@
 // App.js
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { View, StatusBar, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
@@ -24,9 +24,25 @@ import {
 
 import MatchScreen from './src/screens/MatchScreen';
 import useMatch from './src/hooks/useMatch';
-import { colors } from './src/theme';
+import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
+
+function AppBody({ match, onLayoutRootView }) {
+  const { mode, colors } = useTheme();
+  return (
+    <View
+      style={[styles.root, { backgroundColor: colors.bg }]}
+      onLayout={onLayoutRootView}
+    >
+      <StatusBar
+        barStyle={mode === 'dark' ? 'light-content' : 'dark-content'}
+        backgroundColor={colors.bg}
+      />
+      <MatchScreen match={match} />
+    </View>
+  );
+}
 
 export default function App() {
   const match = useMatch();
@@ -61,17 +77,13 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <View style={styles.root} onLayout={onLayoutRootView}>
-        <StatusBar barStyle="light-content" backgroundColor={colors.bg} />
-        <MatchScreen match={match} />
-      </View>
+      <ThemeProvider>
+        <AppBody match={match} onLayoutRootView={onLayoutRootView} />
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.bg,
-  },
+  root: { flex: 1 },
 });
