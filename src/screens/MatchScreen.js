@@ -14,7 +14,6 @@ import { fonts } from '../theme';
 import { useTheme } from '../theme/ThemeContext';
 
 const APP_URL = 'https://scoreboard99.vercel.app/';
-const FEEDBACK_URL = 'https://github.com/nhk25061994-rgb/scorecard-app/issues';
 const APP_NAME = 'scoreboard99';
 const DEV_CREDIT = 'Developed by Hemanth@25061994';
 
@@ -276,9 +275,6 @@ export default function MatchScreen({ match }) {
             </Text>
             <Text style={styles.footerTagline}> - Track your cricket score with ease.</Text>
           </Text>
-          <Pressable onPress={() => openLink(FEEDBACK_URL)}>
-            <Text style={styles.footerFeedback}>📝 Feedback/Issues? Click here</Text>
-          </Pressable>
           <Text style={styles.footerCopy}>
             © 2026 All rights reserved by <Text style={styles.footerCopyBold}>{APP_NAME}</Text>
           </Text>
